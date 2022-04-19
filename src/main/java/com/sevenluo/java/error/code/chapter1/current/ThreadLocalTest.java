@@ -1,4 +1,4 @@
-package com.sevenluo.java.error.code.chapter1;
+package com.sevenluo.java.error.code.chapter1.current;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

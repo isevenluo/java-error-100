@@ -1,4 +1,4 @@
-package com.sevenluo.java.error.code.chapter1;
+package com.sevenluo.java.error.code.chapter1.current;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StopWatch;
