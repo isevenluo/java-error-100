@@ -113,28 +113,28 @@ public class ThreadPoolTest {
             new ThreadPoolExecutor.CallerRunsPolicy());
 
 
-    @PostConstruct
-    public void init() {
-        printStats(threadPool);
-
-        new Thread(() -> {
-            //模拟需要写入的大量数据
-            String payload = IntStream.rangeClosed(1, 1_000_000)
-                    .mapToObj(__ -> "a")
-                    .collect(Collectors.joining(""));
-            while (true) {
-                threadPool.execute(() -> {
-                    try {
-                        //每次都是创建并写入相同的数据到相同的文件
-                        Files.write(Paths.get("demo.txt"), Collections.singletonList(LocalTime.now().toString() + ":" + payload), UTF_8, CREATE, TRUNCATE_EXISTING);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    log.info("batch file processing done");
-                });
-            }
-        }).start();
-    }
+    // @PostConstruct
+    // public void init() {
+    //     printStats(threadPool);
+    //
+    //     new Thread(() -> {
+    //         //模拟需要写入的大量数据
+    //         String payload = IntStream.rangeClosed(1, 1_000_000)
+    //                 .mapToObj(__ -> "a")
+    //                 .collect(Collectors.joining(""));
+    //         while (true) {
+    //             threadPool.execute(() -> {
+    //                 try {
+    //                     //每次都是创建并写入相同的数据到相同的文件
+    //                     Files.write(Paths.get("demo.txt"), Collections.singletonList(LocalTime.now().toString() + ":" + payload), UTF_8, CREATE, TRUNCATE_EXISTING);
+    //                 } catch (IOException e) {
+    //                     e.printStackTrace();
+    //                 }
+    //                 log.info("batch file processing done");
+    //             });
+    //         }
+    //     }).start();
+    // }
 
 
     private Callable<Integer> calcTask() {
